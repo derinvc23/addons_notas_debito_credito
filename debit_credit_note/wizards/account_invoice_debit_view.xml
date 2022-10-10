@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_account_debit_note" model="ir.ui.view">
+            <field name="name">account.debit.note.form</field>
+            <field name="model">account.invoice.debit</field>
+            <field name="arch" type="xml">
+                <form string="Nota de débito">
+                    <group>
+                        <group>
+                            <field name="filter_debit" widget="radio"/>
+                        </group>
+                        <group>
+                            <div class="oe_grey" colspan="4">
+                                Podrás editar y validar esta nota de crédito directamente o mantenerla en borrador, a la espera de que el documento sea emitido por tu proveedor/cliente.
+                            </div>
+                        </group>
+                        <group>
+                            <field name="journal_id" required="1"/>
+                            <field name="description"/>
+                        </group>
+                        <group>
+                            <field name="date_invoice"/>
+                            <field name="date" groups="base.group_no_one"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button string='Crear nota de débito' name="invoice_debit" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_account_invoice_debit" model="ir.actions.act_window">
+            <field name="name">Nota de débito</field>
+            <field name="res_model">account.invoice.debit</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_account_debit_note"/>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</odoo>
